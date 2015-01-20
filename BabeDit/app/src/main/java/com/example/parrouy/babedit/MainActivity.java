@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,7 +41,7 @@ public class MainActivity extends Activity {
         File dir = new File(test);
 
         ListView lv = (ListView) findViewById(R.id.listeSons);
-        String[] listeSon = listerRepertoire(dir);
+        final String[] listeSon = listerRepertoire(dir);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
@@ -48,19 +49,38 @@ public class MainActivity extends Activity {
 
         lv.setAdapter(arrayAdapter);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
+            {
+                goToListenActivity(listeSon[position]);
+                //finish();
+            }
+        });
+
         mot = (EditText) findViewById(R.id.saisi);
         button = (Button) findViewById(R.id.valider);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToRecordActivity();
+                //finish();
             }
         });
+
+
     }
 
     public void goToRecordActivity(){
         Intent intent = new Intent(this, RecordActivity.class);
         String message = mot.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
+    public void goToListenActivity(String message){
+        Intent intent = new Intent(this, ListenActivity.class);
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
