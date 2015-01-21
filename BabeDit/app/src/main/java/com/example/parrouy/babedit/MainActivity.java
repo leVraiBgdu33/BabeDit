@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,11 @@ public class MainActivity extends Activity {
     private Button button;
     private EditText mot;
     public static String EXTRA_MESSAGE="RecordActivity";
+    private static final int DELETE_ID = Menu.FIRST;
+    private String[] listeSon = new String[0];
+    private ArrayList<String> liste = new ArrayList<String>();
+    private ArrayAdapter<String> arrayAdapter;
+    private ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +46,12 @@ public class MainActivity extends Activity {
         test+="/SonsBabeDit/";
         File dir = new File(test);
 
-        ListView lv = (ListView) findViewById(R.id.listeSons);
-        final String[] listeSon = listerRepertoire(dir);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        lv = (ListView) findViewById(R.id.listeSons);
+        liste = listerRepertoire(dir);
+        arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
-                listeSon);
+                liste);
 
         lv.setAdapter(arrayAdapter);
 
@@ -54,7 +60,7 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
             {
-                goToListenActivity(listeSon[position]);
+                goToListenActivity(liste.get(position));
                 //finish();
             }
         });
@@ -64,11 +70,13 @@ public class MainActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToRecordActivity();
-                //finish();
+                if(mot.getText().toString().equals(""))
+                    Toast.makeText(getApplicationContext(),"Renseigner le nom du fichier",Toast.LENGTH_SHORT).show();
+                else
+                    goToRecordActivity();
             }
         });
-
+        registerForContextMenu(lv);
 
     }
 
@@ -100,16 +108,62 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public String[] listerRepertoire(File repertoire){
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu,v,menuInfo);
+        menu.add(0,DELETE_ID, 0, "Supprimer ce fichier");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case DELETE_ID:
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                long l = info.id;
+                int id = (int) l;
+                deleteFichier(id);
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    public ArrayList<String> listerRepertoire(File repertoire){
         String [] listefichiers;
+
         int i;
         listefichiers=repertoire.list();
         for(i=0;i<listefichiers.length;i++){
             if(listefichiers[i].endsWith(".3gp")==true){
+                liste.add(listefichiers[i]);
                 Log.e("fichier",listefichiers[i]);
             }
         }
-        return listefichiers;
+        return liste;
+    }
+
+    public void deleteFichier(int id){
+        String test = Environment.getExternalStorageDirectory().getAbsolutePath();
+        test+="/SonsBabeDit/"+liste.get(id).toString();
+
+        String dir = Environment.getExternalStorageDirectory().getAbsolutePath();
+        dir += "/SonsBabeDit/";
+        File directory = new File(dir);
+
+        Log.e("delete",test);
+        File filetodelete = new File(test);
+        try {
+            filetodelete.getCanonicalFile().delete();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        liste.clear();
+        liste=listerRepertoire(directory);
+        arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                liste);
+
+        lv.setAdapter(arrayAdapter);
+
     }
 
 }

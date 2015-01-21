@@ -13,7 +13,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,16 +69,17 @@ public class RecordActivity extends Activity
         mRecorder = null;
     }
 
-    class RecordButton extends Button {
+    class RecordButton extends ImageButton {
         boolean mStartRecording = true;
 
         OnClickListener clicker = new OnClickListener() {
             public void onClick(View v) {
                 onRecord(mStartRecording);
                 if (mStartRecording) {
-                    setText("Stop recording");
+                    setBackgroundResource(R.drawable.ico_mic);
+                    Toast.makeText(getApplicationContext(),"Début de l'enregistrement",Toast.LENGTH_SHORT).show();
                 } else {
-                    setText("Start recording");
+                    setBackgroundResource(R.drawable.ico_mic_barre);
                     goToMainActivity();
                 }
                 mStartRecording = !mStartRecording;
@@ -85,7 +88,8 @@ public class RecordActivity extends Activity
 
         public RecordButton(Context ctx) {
             super(ctx);
-            setText("Start recording");
+            //setText("Start recording");
+            setBackgroundResource(R.drawable.ico_mic);
             setOnClickListener(clicker);
         }
     }
@@ -110,16 +114,23 @@ public class RecordActivity extends Activity
         title.setTextColor(Color.rgb(189, 195, 199));
         title.setTextSize(50);
 
-        LinearLayout ll = new LinearLayout(this);
+        RelativeLayout ll = new RelativeLayout(this);
         ll.setBackgroundColor(Color.rgb(52, 152, 219));
         mRecordButton = new RecordButton(this);
-        mRecordButton.setTextSize(50);
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,0);
-        params.gravity = Gravity.CENTER;
+        //mRecordButton.setTextSize(50);
+
+        RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        param.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        mRecordButton.setLayoutParams(param);
+        ll.addView(mRecordButton);
+
+        param = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        param.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        param.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        title.setLayoutParams(param);
         ll.addView(title);
-        ll.addView(mRecordButton, params);
+
         setContentView(ll);
     }
 
