@@ -43,8 +43,6 @@ public class ListenActivity extends Activity {
     private ImageButton pause;
     private ImageButton reprendre;
     private Button test;
-    private TextView textLeurre;
-    private TextView titre;
     int t=0;
 
     private void startPlaying() {
@@ -128,10 +126,10 @@ public class ListenActivity extends Activity {
             seekChange(v);
             return false; }
         });
-        StringTokenizer serveur = new StringTokenizer(message, ".3gp");
-        String serveurvalue = serveur.nextToken();
-        textLeurre = (TextView) findViewById(R.id.titre_texte);
-        textLeurre.setText(textLeurre.getText().toString()+serveurvalue);
+        StringTokenizer motTitre = new StringTokenizer(message, ".3gp");
+        String mot = motTitre.nextToken();
+        TextView titre = (TextView) findViewById(R.id.titre_texte);
+        titre.setText(titre.getText().toString()+mot);
 
         start = (ImageButton) findViewById(R.id.start);
         pause = (ImageButton) findViewById(R.id.pause);

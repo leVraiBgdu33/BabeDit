@@ -131,10 +131,12 @@ public class MainActivity extends Activity {
 
         int i;
         listefichiers=repertoire.list();
-        for(i=0;i<listefichiers.length;i++){
-            if(listefichiers[i].endsWith(".3gp")==true){
-                liste.add(listefichiers[i]);
-                Log.e("fichier",listefichiers[i]);
+        if(listefichiers != null){
+            for(i=0;i<listefichiers.length;i++){
+                if(listefichiers[i].endsWith(".3gp")==true){
+                    liste.add(listefichiers[i]);
+                    Log.e("fichier",listefichiers[i]);
+                }
             }
         }
         return liste;
