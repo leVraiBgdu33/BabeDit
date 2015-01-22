@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#3498db"
+    tools:context=".MyActivity"
+    android:columnCount="2"
+    android:rowCount="3">
+
+    <!--<Button
+    android:id="@+id/button1"
+    android:layout_columnSpan="1"
+    android:layout_rowSpan="1"
+    android:text="Button" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_columnSpan="1"
+        android:layout_rowSpan="2"
+        android:text="Button" />-->
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/first_title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Liste des sons"
+            android:textSize="35dp"
+            android:textColor="#bdc3c7"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/first"
+        android:layout_below="@+id/first_title"
+        android:layout_alignParentLeft="true">
+        <ListView
+            android:layout_width="500px"
+            android:layout_height="wrap_content"
+            android:id="@+id/listeSons">
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/second_title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajouter un nouveau son"
+            android:textSize="35dp"
+            android:textColor="#bdc3c7"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/second"
+        android:layout_below="@+id/second_title"
+        android:layout_marginTop="150px"
+        android:layout_alignParentRight="true">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/saisi"
+            android:width="100dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/third"
+        android:layout_below="@+id/second"
+        android:layout_alignParentRight="true">
+        <Button
+            android:id="@+id/valider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VALIDER"/>
+    </LinearLayout>
+
+</RelativeLayout>

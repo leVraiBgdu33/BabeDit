@@ -9,72 +9,54 @@
     android:background="#3498db"
     tools:context=".MyActivity">
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/logoIUT"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logo"/>
+
+</LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/first_title"
-        android:layout_centerHorizontal="true">
-        <TextView
+        android:id="@+id/logobabedit"
+        android:layout_alignTop="@+id/logoIUT"
+        android:layout_alignParentRight="true">
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Liste des sons"
-            android:textSize="40dp"
-            android:textColor="#bdc3c7"
-         />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/first"
-        android:layout_below="@+id/first_title"
-        android:layout_centerHorizontal="true">
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:id="@+id/listeSons">
-        </ListView>
-    </LinearLayout>
+            android:background="@drawable/logobabedit"/>
+        </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/second_title"
-        android:layout_below="@+id/first"
-        android:layout_marginTop="100px"
-        android:layout_centerHorizontal="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ajouter un nouveau son"
-            android:textSize="30dp"
-            android:textColor="#bdc3c7"/>
-    </LinearLayout>
+        android:id="@+id/boutons"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/second"
-        android:layout_below="@+id/second_title"
-        android:layout_marginTop="75px"
-        android:layout_centerHorizontal="true">
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/saisi"
-            android:width="100dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/third"
-        android:layout_below="@+id/second"
-        android:layout_centerHorizontal="true">
-        <Button
-            android:id="@+id/valider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="VALIDER"/>
+        <ImageButton
+            android:layout_width="250px"
+            android:layout_height="150px"
+            android:id="@+id/start"
+            android:background="@drawable/jouer"/>
+        <ImageButton
+            android:layout_width="250px"
+            android:layout_height="150px"
+            android:id="@+id/credit"
+            android:background="@drawable/credits"/>
+        <ImageButton
+            android:layout_width="250px"
+            android:layout_height="150px"
+            android:id="@+id/quit"
+            android:background="@drawable/quitter"/>
     </LinearLayout>
 
 </RelativeLayout>

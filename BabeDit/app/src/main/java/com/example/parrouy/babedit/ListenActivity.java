@@ -85,18 +85,20 @@ public class ListenActivity extends Activity {
     }
 
     public void startPlayProgressUpdater() {
-        seek_bar.setProgress(mPlayer.getCurrentPosition());
+        if(mPlayer != null) {
+            seek_bar.setProgress(mPlayer.getCurrentPosition());
 
-        if (mPlayer.isPlaying()) {
-            Runnable notification = new Runnable() {
-                public void run() {
-                    startPlayProgressUpdater();
-                }
-            };
-            seekHandler.postDelayed(notification,1000);
-        }else{
-            mPlayer.pause();
-            seek_bar.setProgress(0);
+            if (mPlayer.isPlaying()) {
+                Runnable notification = new Runnable() {
+                    public void run() {
+                        startPlayProgressUpdater();
+                    }
+                };
+                seekHandler.postDelayed(notification, 1000);
+            } else {
+                mPlayer.pause();
+                seek_bar.setProgress(0);
+            }
         }
     }
 
@@ -114,7 +116,7 @@ public class ListenActivity extends Activity {
         setContentView(R.layout.listenactivity);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(AccueilActivity.EXTRA_MESSAGE);
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         mFileName += "/SonsBabeDit/"+message;
         Log.e("file",mFileName);

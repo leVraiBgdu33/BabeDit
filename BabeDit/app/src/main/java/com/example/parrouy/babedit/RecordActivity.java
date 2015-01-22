@@ -80,7 +80,7 @@ public class RecordActivity extends Activity
                     Toast.makeText(getApplicationContext(),"Début de l'enregistrement",Toast.LENGTH_SHORT).show();
                 } else {
                     setBackgroundResource(R.drawable.ico_mic_barre);
-                    goToMainActivity();
+                    goToAccueilActivity();
                 }
                 mStartRecording = !mStartRecording;
             }
@@ -99,7 +99,7 @@ public class RecordActivity extends Activity
         super.onCreate(icicle);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(AccueilActivity.EXTRA_MESSAGE);
         File myDir = new File(Environment.getExternalStorageDirectory() +
                 File.separator + "SonsBabeDit");
         Boolean success=true;
@@ -134,8 +134,8 @@ public class RecordActivity extends Activity
         setContentView(ll);
     }
 
-    public void goToMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
+    public void goToAccueilActivity(){
+        Intent intent = new Intent(this, AccueilActivity.class);
         startActivity(intent);
     }
 
