@@ -8,15 +8,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titre"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100px">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/titre_texte"
-            android:text="Lecture du mot "
-            android:textSize="40dp"
-            android:textColor="#bdc3c7"
+            android:text=""
+            android:textSize="55dp"
+            android:textColor="#edf1f2"
         />
     </LinearLayout>
 
@@ -26,12 +27,15 @@
         android:layout_below="@+id/titre"
         android:id="@+id/seekbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300px">
+        android:layout_marginTop="100px">
         <SeekBar
             android:id="@+id/seek_bar"
-            android:max="30"
+            android:max="100"
             android:layout_width="500dp"
             android:layout_height="wrap_content"
+            android:progressDrawable="@drawable/styled_progress"
+            android:thumb="@drawable/thumbler_small"
+            android:indeterminate="false"
         />
     </LinearLayout>
 
@@ -40,7 +44,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/buttons"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50px">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -71,13 +76,22 @@
         android:layout_centerInParent="true"
         android:layout_below="@+id/seekbar"
         android:id="@+id/visualiseur">
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/test"/>
+    </LinearLayout>
 
-
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/four"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true">
+        <ImageButton
+            android:id="@+id/retour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/retour"/>
     </LinearLayout>
 </RelativeLayout>

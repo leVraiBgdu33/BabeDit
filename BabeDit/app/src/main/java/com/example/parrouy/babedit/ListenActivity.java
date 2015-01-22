@@ -2,8 +2,6 @@ package com.example.parrouy.babedit;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.media.audiofx.Equalizer;
 import android.media.audiofx.Visualizer;
@@ -16,8 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +38,7 @@ public class ListenActivity extends Activity {
     private ImageButton start;
     private ImageButton pause;
     private ImageButton reprendre;
+    private ImageButton retour;
     private Button test;
     int t=0;
 
@@ -130,6 +127,7 @@ public class ListenActivity extends Activity {
         });
         StringTokenizer motTitre = new StringTokenizer(message, ".3gp");
         String mot = motTitre.nextToken();
+        mot = mot.toUpperCase();
         TextView titre = (TextView) findViewById(R.id.titre_texte);
         titre.setText(titre.getText().toString()+mot);
 
@@ -177,7 +175,20 @@ public class ListenActivity extends Activity {
             }
         });
 
+        retour = (ImageButton) findViewById(R.id.retour);
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAccueilActivity();
+                finish();
+            }
+        });
 
+    }
+
+    public void goToAccueilActivity(){
+        Intent intent = new Intent(this, AccueilActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class AccueilActivity extends Activity {
     private ArrayList<String> liste = new ArrayList<String>();
     private ArrayAdapter<String> arrayAdapter;
     private ListView lv;
+    private ImageButton retour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class AccueilActivity extends Activity {
             public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
             {
                 goToListenActivity(liste.get(position));
-                //finish();
+                finish();
             }
         });
 
@@ -72,12 +74,30 @@ public class AccueilActivity extends Activity {
             public void onClick(View v) {
                 if(mot.getText().toString().equals(""))
                     Toast.makeText(getApplicationContext(),"Renseigner le nom du fichier",Toast.LENGTH_SHORT).show();
-                else
+                else{
                     goToRecordActivity();
+                    finish();
+                }
+
             }
         });
+
+        retour = (ImageButton) findViewById(R.id.retour);
+        retour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMainActivity();
+                finish();
+            }
+        });
+
         registerForContextMenu(lv);
 
+    }
+
+    public void goToMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void goToRecordActivity(){

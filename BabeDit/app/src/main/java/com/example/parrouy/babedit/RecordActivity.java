@@ -81,6 +81,7 @@ public class RecordActivity extends Activity
                 } else {
                     setBackgroundResource(R.drawable.ico_mic_barre);
                     goToAccueilActivity();
+                    finish();
                 }
                 mStartRecording = !mStartRecording;
             }
@@ -88,7 +89,6 @@ public class RecordActivity extends Activity
 
         public RecordButton(Context ctx) {
             super(ctx);
-            //setText("Start recording");
             setBackgroundResource(R.drawable.ico_mic);
             setOnClickListener(clicker);
         }
