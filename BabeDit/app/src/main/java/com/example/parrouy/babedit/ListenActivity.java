@@ -125,7 +125,8 @@ public class ListenActivity extends Activity {
             seekChange(v);
             return false; }
         });
-        StringTokenizer motTitre = new StringTokenizer(message, ".3gp");
+
+        StringTokenizer motTitre = new StringTokenizer(message, ".");
         String mot = motTitre.nextToken();
         mot = mot.toUpperCase();
         TextView titre = (TextView) findViewById(R.id.titre_texte);
@@ -183,7 +184,6 @@ public class ListenActivity extends Activity {
                 finish();
             }
         });
-
     }
 
     public void goToAccueilActivity(){

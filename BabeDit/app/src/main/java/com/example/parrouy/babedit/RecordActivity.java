@@ -111,8 +111,8 @@ public class RecordActivity extends Activity
 
         TextView title = new TextView(this);
         title.setText("Capturer un son");
-        title.setTextColor(Color.rgb(189, 195, 199));
-        title.setTextSize(50);
+        title.setTextColor(Color.rgb(236, 240, 241));
+        title.setTextSize(30);
 
         RelativeLayout ll = new RelativeLayout(this);
         ll.setBackgroundColor(Color.rgb(52, 152, 219));

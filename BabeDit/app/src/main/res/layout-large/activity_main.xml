@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#3498db"
+    tools:context=".MyActivity">
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/logoIUT"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logo"/>
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logobabedit"
+        android:layout_alignTop="@+id/logoIUT"
+        android:layout_alignParentRight="true">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logobabedit"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/boutons"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:layout_width="250px"
+            android:layout_height="150px"
+            android:id="@+id/start"
+            android:background="@drawable/jouer"/>
+        <ImageButton
+            android:layout_width="250px"
+            android:layout_height="150px"
+            android:id="@+id/credit"
+            android:background="@drawable/credits"/>
+        <ImageButton
+            android:layout_width="250px"
+            android:layout_height="150px"
+            android:id="@+id/quit"
+            android:background="@drawable/quitter"/>
+    </LinearLayout>
+
+</RelativeLayout>
