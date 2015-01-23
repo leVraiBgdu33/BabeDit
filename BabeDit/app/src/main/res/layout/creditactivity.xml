@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Équipe BabeDit"
-            android:textSize="35dp"
+            android:textSize="20dp"
             android:textColor="#edf1f2"/>
     </LinearLayout>
 
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150px"
+        android:layout_marginTop="200px"
         android:id="@+id/avatar">
 
         <ImageView
@@ -57,13 +57,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textColor="#edf1f2"
             android:text="Cette application est réalisée dans le cadre du projet DAWIN 2015 de l'IUT de Bordeaux."/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textColor="#edf1f2"
             android:text="Elle est conçue afin d'aider les jeunes écoliers à se familiariser avec les syllabes d'un mot."/>
     </LinearLayout>
