@@ -2,13 +2,8 @@ package com.example.parrouy.babedit;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.media.MediaRecorder;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -16,20 +11,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AccueilActivity extends Activity {
-    private Button button;
+    private ImageButton valider;
     private EditText mot;
     public static String EXTRA_MESSAGE="RecordActivity";
     private static final int DELETE_ID = Menu.FIRST;
@@ -68,8 +60,8 @@ public class AccueilActivity extends Activity {
         });
 
         mot = (EditText) findViewById(R.id.saisi);
-        button = (Button) findViewById(R.id.valider);
-        button.setOnClickListener(new View.OnClickListener() {
+        valider = (ImageButton) findViewById(R.id.valider);
+        valider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mot.getText().toString().equals(""))

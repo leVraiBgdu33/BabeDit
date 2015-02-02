@@ -75,10 +75,12 @@
         android:layout_alignParentLeft="true">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:background="@drawable/retour"
-            android:id="@+id/retour"/>
+            android:id="@+id/retour"
+            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="60dp"/>
     </LinearLayout>
 
 </RelativeLayout>

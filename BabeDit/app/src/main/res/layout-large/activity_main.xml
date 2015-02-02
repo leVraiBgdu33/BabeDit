@@ -51,12 +51,14 @@
             android:layout_width="250px"
             android:layout_height="150px"
             android:id="@+id/credit"
-            android:background="@drawable/credits"/>
+            android:background="@drawable/credits"
+            android:layout_marginTop="15dp"/>
         <ImageButton
             android:layout_width="250px"
             android:layout_height="150px"
             android:id="@+id/quit"
-            android:background="@drawable/quitter"/>
+            android:background="@drawable/quitter"
+            android:layout_marginTop="15dp"/>
     </LinearLayout>
 
 </RelativeLayout>

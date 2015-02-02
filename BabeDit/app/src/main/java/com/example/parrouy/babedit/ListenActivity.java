@@ -40,72 +40,7 @@ public class ListenActivity extends Activity {
     private ImageButton reprendre;
     private ImageButton retour;
     private Button test;
-    int t=0;
-
-    private void startPlaying() {
-        mPlayer = new MediaPlayer();
-        try {
-            mPlayer.setDataSource(mFileName);
-            mPlayer.prepare();
-            seek_bar.setProgress(0);
-            seek_bar.setMax(mPlayer.getDuration());
-            mPlayer.start();
-        } catch (IOException e) {
-            Log.e("play", "prepare() failed");
-        }
-        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-            public void onCompletion(MediaPlayer mp) {
-                start.setVisibility(View.VISIBLE);
-                pause.setVisibility(View.GONE);
-                reprendre.setVisibility(View.GONE);
-                Toast.makeText(getApplicationContext(), "Lecture finie", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void setupVisualizerFxAndUI() {
-        mVisualizerView = new VisualizerView(this);
-        //ll.addView(mVisualizerView);
-
-        mVisualizer = new Visualizer(mPlayer.getAudioSessionId());
-        mVisualizer.setCaptureSize(Visualizer.getCaptureSizeRange()[1]);
-        mVisualizer.setDataCaptureListener(new Visualizer.OnDataCaptureListener() {
-            public void onWaveFormDataCapture(Visualizer visualizer, byte[] bytes,
-                                              int samplingRate) {
-                mVisualizerView.updateVisualizer(bytes);
-            }
-
-            public void onFftDataCapture(Visualizer visualizer, byte[] bytes, int samplingRate) {
-            }
-        }, Visualizer.getMaxCaptureRate() / 2, true, false);
-    }
-
-    public void startPlayProgressUpdater() {
-        if(mPlayer != null) {
-            seek_bar.setProgress(mPlayer.getCurrentPosition());
-
-            if (mPlayer.isPlaying()) {
-                Runnable notification = new Runnable() {
-                    public void run() {
-                        startPlayProgressUpdater();
-                    }
-                };
-                seekHandler.postDelayed(notification, 1000);
-            } else {
-                mPlayer.pause();
-                seek_bar.setProgress(0);
-            }
-        }
-    }
-
-    // This is event handler thumb moving event
-    private void seekChange(View v){
-        if(mPlayer.isPlaying()){
-            SeekBar sb = (SeekBar)v;
-            mPlayer.seekTo(sb.getProgress());
-        }
-    }
+    int t = 0;
 
     @Override
     protected void onCreate(Bundle icicle) {
@@ -115,22 +50,25 @@ public class ListenActivity extends Activity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(AccueilActivity.EXTRA_MESSAGE);
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-        mFileName += "/SonsBabeDit/"+message;
-        Log.e("file",mFileName);
+        mFileName += "/SonsBabeDit/" + message;
+        Log.e("file", mFileName);
 
         mPlayer = new MediaPlayer();
         seek_bar = (SeekBar) findViewById(R.id.seek_bar);
         seek_bar.setMax(mPlayer.getDuration());
-        seek_bar.setOnTouchListener(new View.OnTouchListener() {@Override public boolean onTouch(View v, MotionEvent event) {
-            seekChange(v);
-            return false; }
+        seek_bar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                seekChange(v);
+                return false;
+            }
         });
 
         StringTokenizer motTitre = new StringTokenizer(message, ".");
         String mot = motTitre.nextToken();
         mot = mot.toUpperCase();
         TextView titre = (TextView) findViewById(R.id.titre_texte);
-        titre.setText(titre.getText().toString()+mot);
+        titre.setText(titre.getText().toString() + mot);
 
         start = (ImageButton) findViewById(R.id.start);
         pause = (ImageButton) findViewById(R.id.pause);
@@ -186,7 +124,74 @@ public class ListenActivity extends Activity {
         });
     }
 
-    public void goToAccueilActivity(){
+    private void startPlaying() {
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(mFileName);
+            mPlayer.prepare();
+            seek_bar.setProgress(0);
+            seek_bar.setMax(mPlayer.getDuration());
+            mPlayer.start();
+        } catch (IOException e) {
+            Log.e("play", "prepare() failed");
+        }
+        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            public void onCompletion(MediaPlayer mp) {
+                start.setVisibility(View.VISIBLE);
+                pause.setVisibility(View.GONE);
+                reprendre.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), "Lecture finie", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setupVisualizerFxAndUI() {
+        mVisualizerView = new VisualizerView(this);
+        //ll.addView(mVisualizerView);
+
+        mVisualizer = new Visualizer(mPlayer.getAudioSessionId());
+        mVisualizer.setCaptureSize(Visualizer.getCaptureSizeRange()[1]);
+        mVisualizer.setDataCaptureListener(new Visualizer.OnDataCaptureListener() {
+            public void onWaveFormDataCapture(Visualizer visualizer, byte[] bytes,
+                                              int samplingRate) {
+                mVisualizerView.updateVisualizer(bytes);
+            }
+
+            public void onFftDataCapture(Visualizer visualizer, byte[] bytes, int samplingRate) {
+            }
+        }, Visualizer.getMaxCaptureRate() / 2, true, false);
+    }
+
+    public void startPlayProgressUpdater() {
+        if (mPlayer != null) {
+            seek_bar.setProgress(mPlayer.getCurrentPosition());
+
+            if (mPlayer.isPlaying()) {
+                Runnable notification = new Runnable() {
+                    public void run() {
+                        startPlayProgressUpdater();
+                    }
+                };
+                seekHandler.postDelayed(notification, 1000);
+            } else {
+                mPlayer.pause();
+                seek_bar.setProgress(0);
+            }
+        }
+    }
+
+    // This is event handler thumb moving event
+    private void seekChange(View v) {
+        if (mPlayer.isPlaying()) {
+            SeekBar sb = (SeekBar) v;
+            mPlayer.seekTo(sb.getProgress());
+        }
+    }
+
+
+
+    public void goToAccueilActivity() {
         Intent intent = new Intent(this, AccueilActivity.class);
         startActivity(intent);
     }
@@ -200,3 +205,5 @@ public class ListenActivity extends Activity {
         }
     }
 }
+
+
